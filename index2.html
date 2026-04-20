@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaimeen Bulsara - UX Architect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0f4c75;
+            --secondary-color: #3282b8;
+            --accent-color: #bbe1fa;
+            --text-dark: #1b262c;
+            --text-light: #ffffff;
+            --bg-light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--text-light);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: var(--primary-color);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .highlights {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .highlights h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .highlights ul {
+            list-style: none;
+        }
+
+        .highlights li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .highlights li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.3rem 0;
+        }
+
+        /* Experience Section */
+        .experience {
+            background: var(--bg-light);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--secondary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 1.5rem;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            border: 3px solid white;
+        }
+
+        .timeline-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .company {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-item .duration {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item ul {
+            margin-left: 1.5rem;
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: -2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Jaimeen Bulsara</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Jaimeen Bulsara</h1>
+        <p>UX Architect | User Experience Designer</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+            <a href="https://breadbutterjam.github.io/portfolio/" class="btn btn-secondary" target="_blank">View Portfolio</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I love to create intuitive, engaging user experiences that make people's lives easier. With over 12+ years of experience, I've designed user experiences for projects of various sizes—from small interactives to complex learning management systems and enterprise applications.</p>
+                    <p>I started off as a developer and then ventured into UX design on an adventure to find something challenging. This unique combination allows me to bridge the gap between design vision and technical implementation.</p>
+                    <p>I specialize in problem framing, requirement analysis, and simplifying complex systems. My experience spans building and leading UX teams, delivering projects end-to-end in cross-functional environments, and aligning user needs with technical feasibility and business goals.</p>
+                    <p>When I'm not at my desk creating great products, you can find me making soulful images, going on long drives, or savoring the perfect cup of coffee.</p>
+                </div>
+                <div class="highlights">
+                    <h3>Key Strengths</h3>
+                    <ul>
+                        <li>12+ years of UX experience</li>
+                        <li>Led end-to-end design processes</li>
+                        <li>Problem framing & requirement analysis</li>
+                        <li>Cross-functional team leadership</li>
+                        <li>Developer background (HTML, CSS, JS)</li>
+                        <li>Design systems & accessibility</li>
+                        <li>Agile/Scrum delivery</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Save the Children</h3>
+                        <p>Design Language System and 15+ unique, immersive layouts for the international NGO, built upon their branding guidelines to create engaging pages for users worldwide.</p>
+                        <div class="project-tags">
+                            <span class="tag">Design System</span>
+                            <span class="tag">Layouts</span>
+                            <span class="tag">NGO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>UNCTAD - DMFAS</h3>
+                        <p>Enterprise System Redesign for Debt Management and Financial Analysis System. Conducted heuristic evaluation solving 150+ usability issues, becoming the gold standard for subsequent modules.</p>
+                        <div class="project-tags">
+                            <span class="tag">Enterprise</span>
+                            <span class="tag">Redesign</span>
+                            <span class="tag">Usability</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Mastery Education</h3>
+                        <p>LMS Redesign with enhanced feature set allowing educators to manage student profiles, assign assessments, and access real-time analytics for standards-based instruction.</p>
+                        <div class="project-tags">
+                            <span class="tag">LMS</span>
+                            <span class="tag">Education</span>
+                            <span class="tag">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Teach-Now</h3>
+                        <p>System overhaul with modern design and responsive interface. Increased candidate engagement by 31% using Material Design principles.</p>
+                        <div class="project-tags">
+                            <span class="tag">Responsive</span>
+                            <span class="tag">Material Design</span>
+                            <span class="tag">Engagement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>GC Dental</h3>
+                        <p>Website Redesign and Pivot Pitch for tech stack upgrade (Drupal 7 to 9). Improved usability and conversion rate, defining roadmap for Learning Management System.</p>
+                        <div class="project-tags">
+                            <span class="tag">Redesign</span>
+                            <span class="tag">UX Strategy</span>
+                            <span class="tag">Conversion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Mondelez - Sales Pulse</h3>
+                        <p>Mobile app for sales team to track activities with functional yet engaging design that opened doors to multiple client engagements.</p>
+                        <div class="project-tags">
+                            <span class="tag">Mobile App</span>
+                            <span class="tag">Sales</span>
+                            <span class="tag">Enterprise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>UX & Delivery</h3>
+                    <ul>
+                        <li>Requirement Analysis & Problem Framing</li>
+                        <li>Usability Testing</li>
+                        <li>Ideation & Workshop Facilitation</li>
+                        <li>Information Architecture</li>
+                        <li>Interaction Design</li>
+                        <li>Wireframing & Prototyping</li>
+                        <li>Design Systems</li>
+                        <li>Accessibility</li>
+                        <li>Design Reviews & Critique</li>
+                        <li>Agile/Scrum Delivery</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Leadership & Collaboration</h3>
+                    <ul>
+                        <li>Estimation & Planning</li>
+                        <li>Stakeholder Communication</li>
+                        <li>Cross-functional Collaboration</li>
+                        <li>Team Leadership</li>
+                        <li>Recruitment</li>
+                        <li>Mentoring</li>
+                        <li>Conflict Resolution</li>
+                        <li>Project Management</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Technical & Tools</h3>
+                    <ul>
+                        <li>Figma</li>
+                        <li>Adobe XD</li>
+                        <li>JIRA</li>
+                        <li>Redmine</li>
+                        <li>Microsoft Suite</li>
+                        <li>HTML5</li>
+                        <li>CSS/JavaScript</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2>Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>UX Architect</h3>
+                    <div class="company">Srijan (now Material)</div>
+                    <div class="duration">Feb 2022 – May 2025</div>
+                    <ul>
+                        <li>Led end-to-end UX activities including discovery workshops, requirement analysis, IA, personas, journey flows, wireframes, and prototypes</li>
+                        <li>Facilitated problem-framing sessions with stakeholders, reducing design ambiguity and shortening iteration cycles by 50%</li>
+                        <li>Collaborated with PMs, engineering, and QA to ensure alignment from concept to delivery</li>
+                        <li>Defined design approach, deliverables, and timelines for multi-million dollar client engagements</li>
+                        <li>Institutionalized design consistency through process improvement and establishment of internal design library</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>UX Architect</h3>
+                    <div class="company">Trigyn Technologies</div>
+                    <div class="duration">Apr 2021 – Feb 2022</div>
+                    <ul>
+                        <li>Owned UX for multiple key accounts, designing elegant solutions for complex workflows and enterprise applications</li>
+                        <li>Worked on foot-in-the-door opportunity that led to repeat multi-year engagement, turning division into profit center</li>
+                        <li>Supported recruitment, onboarding, and mentoring of UX team</li>
+                        <li>Created UX frameworks and design workflows improving delivery turnaround times</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Associate Manager – UX</h3>
+                    <div class="company">Trigyn Technologies</div>
+                    <div class="duration">Oct 2019 – Mar 2021</div>
+                    <ul>
+                        <li>Brought design leadership to ongoing projects, introducing user-centric approach</li>
+                        <li>Improved user engagement and reduced support tickets by over 40%</li>
+                        <li>Built UX team from scratch: defined hiring pipeline, conducted interviews, developed training materials</li>
+                        <li>Delivered IA, wireframes, and prototypes for internal and client-facing projects</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Project Manager</h3>
+                    <div class="company">Plum Tree</div>
+                    <div class="duration">Dec 2018 – Oct 2019</div>
+                    <ul>
+                        <li>Managed 10+ high-priority projects ensuring timely delivery while maintaining quality standards</li>
+                        <li>Acted as primary client contact for updates, priorities, and change requests</li>
+                        <li>Coordinated between design, development, and business teams for smooth project execution</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Design Lead</h3>
+                    <div class="company">Zeus Learning</div>
+                    <div class="duration">Jul 2014 – Dec 2018</div>
+                    <ul>
+                        <li>Led team of designers across multiple product lines from concept to deployment</li>
+                        <li>Conducted requirement analysis and collaborated on SOWs & proposals</li>
+                        <li>Created IA, wireframes, and interactive prototypes for enterprise and education platforms</li>
+                        <li>Led recruitment and training: designed tests, evaluated candidates, created onboarding modules</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Senior Web Developer</h3>
+                    <div class="company">Zeus Learning</div>
+                    <div class="duration">Jan 2012 – Jun 2014</div>
+                    <ul>
+                        <li>Built frameworks for interactive science-based learning modules</li>
+                        <li>Led 10-member team building STEM-focused digital experiences</li>
+                        <li>Streamlined development workflows improving delivery speed</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Web Developer</h3>
+                    <div class="company">Zeus Learning</div>
+                    <div class="duration">Jul 2009 – Dec 2011</div>
+                    <ul>
+                        <li>Developed Flash/AS3 learning modules before transitioning to HTML-based development</li>
+                        <li>Contributed to major conversion projects modernizing legacy Flash content</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <p>I'm always open to discussing new opportunities, collaborations, or just having a chat about UX design.</p>
+                <div class="contact-links">
+                    <a href="mailto:jaimeen@gmail.com" class="contact-link">
+                        📧 jaimeen@gmail.com
+                    </a>
+                    <a href="tel:+919833381188" class="contact-link">
+                        📱 +91-9833381188
+                    </a>
+                    <a href="https://www.linkedin.com/in/jaimeen-bulsara-31b25527/" class="contact-link" target="_blank">
+                        💼 LinkedIn
+                    </a>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="https://breadbutterjam.github.io/portfolio/JaimeenBulsara_CV.pdf" class="btn btn-primary" target="_blank">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Jaimeen Bulsara. All rights reserved.</p>
+    </footer>
+</body>
+</html>
