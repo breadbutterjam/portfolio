@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaimeen Bulsara</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-dark: #2c3e50;
+            --text-light: #ecf0f1;
+            --bg-light: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .exploration-links{
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            font-family: monospace;
+            font-style: underline;
+        }
+
+        .exploration-links:hover {
+            color: var(--secondary-color);
+        }
+
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 7rem 2rem 4rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem 0;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* About Section */
+        .about-content {
+            font-size: 1.05rem;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+
+        /* Current Explorations Section */
+        .explorations {
+            background: white;
+        }
+
+        .exploration-intro {
+            text-align: left;
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .explorations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .exploration-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--secondary-color);
+            position: relative;
+        }
+
+
+        .exploration-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .exploration-card .status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.9);
+            color: var(--primary-color);
+            font-weight: 500;
+            display: none; /* Hide tags for now - include later if required */
+        }
+
+        .exploration-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .exploration-card h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .exploration-card .type {
+            color: var(--secondary-color);
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .exploration-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            /* margin-bottom: 1rem; */
+        }
+
+        .exploration-card .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .exploration-card .tech-tag {
+            background: white;
+            color: #666;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+        }
+
+        /* Interests Grid */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .interest-card {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .interest-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .interest-card h3 {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+        }
+
+        .interest-card p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Projects Section - Responsive Horizontal Cards */
+        .projects {
+            background: var(--bg-light);
+        }
+
+        .project-horizontal {
+            background: white;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            transition: transform 0.3s, box-shadow 0.3s;
+            /* cursor: pointer; */
+        }
+
+        .project-horizontal:hover {
+            /* transform: translateX(5px); */
+            /* box-shadow: 0 4px 15px rgba(0,0,0,0.12); */
+            
+        }
+
+        .project-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            min-height: 180px;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .project-image.dmfas{
+            background-image: url(img/dmfas7.png);
+            background-position-x: -72px;
+        }
+
+        .project-image.SCI{
+            background-image: url(img/sci2.png);
+            background-position-x: center;
+            /* background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); */
+        }
+
+        .project-image.ME{
+            background-image: url(img/me2.jfif);
+            background-position: top;
+            /* background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); */
+        }
+
+        @media screen and (max-width: 600px) {
+            .project-image.dmfas {
+                background-position-x: 0px;
+            }
+
+            
+        }
+
+        .project-details {
+            /* padding: 1.5rem; */
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            padding-bottom: 1rem;
+            padding-top: 1rem;
+
+        }
+
+        .project-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .project-details .subtitle {
+            color: var(--secondary-color);
+            font-size: 0.85rem;
+            margin-bottom: 0.7rem;
+            font-style: italic;
+        }
+
+        .project-details p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .project-tags {
+            margin-top: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .tag {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            padding: 0.25rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* Work Section */
+        .work-section {
+            background: white;
+        }
+
+        .timeline-compact {
+            max-width: 700px;
+        }
+
+        .timeline-item-compact {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .timeline-item-compact:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-item-compact h3 {
+            color: var(--primary-color);
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-item-compact .meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item-compact .company {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .timeline-item-compact p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.7rem 1.3rem;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: left 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+                gap: 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                padding: 1rem 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .project-horizontal {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image {
+                height: 220px;
+                min-height: auto;
+            }
+
+            .project-image.SCI{
+                background-position: bottom;
+            }
+
+            .project-details {
+                /* padding: 1.25rem; */
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+
+            .interests-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .explorations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 2.5rem 0;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-content {
+                font-size: 1rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-link {
+                width: 200px;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 35px;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .interest-card {
+                padding: 1.25rem 1rem;
+            }
+
+            .project-details h3 {
+                font-size: 1.1rem;
+            }
+
+            .project-details p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <!-- <img src="data:image/png;base64,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" alt="JB"> -->
+                <img src="img/log.png" alt="JB">
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#work" onclick="closeMenu()">Work</a></li>
+                <li><a href="#explorations" onclick="closeMenu()">Now</a></li>
+                <li><a href="#interests" onclick="closeMenu()">Interests</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Hello World, I'm Jaimeen 👋</h1>
+        <p>I love to design things, tell stories, make photos, and sip on my cup of coffee</p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <p>For the past 12+ years, I've been simplifying complex systems and creating experiences that make people's lives easier. My background in development gives me a unique perspective—I understand both what users need and what's technically possible.</p>
+                
+                <p>When I'm not solving design problems, you'll find me exploring new places, going on long drives, or hunting for the perfect cup of coffee.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Explorations Section -->
+    <section id="explorations" class="explorations">
+        <div class="container">
+            <h2>What I'm Building Now</h2>
+            <p class="exploration-intro">Side projects, experiments, and creative explorations currently in progress</p>
+            
+            <div class="explorations-grid">
+                <div class="exploration-card">
+                    <div class="status">In Progress</div>
+                    <div class="icon">🗺️</div>
+                    <h3>States of India</h3>
+                    <div class="type">Web App</div>
+                    <p>An interactive platform to learn about Indian states through various practice and test modes. Making geography fun, one state at a time.</p>
+                    
+                    <div class="tech" style="display: flex;">
+                        <a class="exploration-links" href="https://breadbutterjam.github.io/statesandcapitals/" target="_blank">Explore Project >> </a>
+                        <!-- <span class="tech-tag">React</span>
+                        <span class="tech-tag">Maps API</span>
+                        <span class="tech-tag">Gamification</span> -->
+                    </div>
+                </div>
+
+                <div class="exploration-card">
+                    <div class="status">In Progress</div>
+                    <div class="icon">🏏</div>
+                    <h3>Custom IPL Fantasy</h3>
+                    <div class="type">App</div>
+                    <p>Our own twist on IPL fantasy cricket with custom rules and scoring. Built for friends who wanted more control over their fantasy league experience.</p>
+                    <div class="tech" style="display: flex;">
+                        <a class="exploration-links" href="mailto:sample@sample.com?subject=Request%20Access%20to%20Fantasy%20League&body=Hi%2C%20I%20would%20like%20to%20explore%20the%20fantasy%20league%20app%20you%20are%20working%20on.%20Thanks.">Request access >> </a>
+                        <!-- <span class="tech-tag">Live Scoring</span>
+                        <span class="tech-tag">Custom Rules</span>
+                        <span class="tech-tag">Real-time Updates</span> -->
+                    </div>
+                </div>
+
+                <div class="exploration-card">
+                    <div class="status">Writing</div>
+                    <div class="icon">📖</div>
+                    <h3>Historical Fantasy Novel</h3>
+                    <div class="type">Creative Writing</div>
+                    <p>A historical fantasy set in modern times where ancient myths collide with contemporary India. Exploring what happens when the past refuses to stay buried.</p>
+                    <div class="tech">
+                        <span class="tech-tag">Fiction</span>
+                        <span class="tech-tag">Mythology</span>
+                        <span class="tech-tag">Contemporary</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="work" class="projects">
+        <div class="container">
+            <h2>Featured Work</h2>
+
+            <div class="project-horizontal"><!-- 🌍 -->
+                <div class="project-image SCI"></div>
+                <div class="project-details">
+                    <h3>Save the Children</h3>
+                    <div class="subtitle">Design System & Layouts</div>
+                    <p>Created a modern design language system and 20+ unique, immersive layouts for the international NGO. Built upon their branding guidelines to help authors create engaging pages that communicate global impact.</p>
+                    <div class="project-tags">
+                        <span class="tag">Design System</span>
+                        <span class="tag">Content Strategy</span>
+                        <span class="tag">Non-Profit</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-horizontal">
+                <div class="project-image dmfas"></div>
+                <div class="project-details">
+                    <h3>UNCTAD - DMFAS</h3>
+                    <div class="subtitle">Enterprise System Redesign</div>
+                    <p>Redesigned core module of Debt Management and Financial Analysis System. Conducted heuristic evaluation identifying 150+ usability issues. The updated design became the gold standard for all subsequent modules.</p>
+                    <div class="project-tags">
+                        <span class="tag">Enterprise UX</span>
+                        <span class="tag">Heuristic Evaluation</span>
+                        <span class="tag">UN Project</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-horizontal"><!-- 📚 -->
+                <div class="project-image ME"></div>
+                <div class="project-details">
+                    <h3>Mastery Education</h3>
+                    <div class="subtitle">Learning Management System</div>
+                    <p>Transformed a leading learning management platform with enhanced features allowing educators to manage student profiles, assign assessments, and access real-time analytics. Designed gamification, and adaptive learning features to increase student engagement.</p>
+                    <div class="project-tags">
+                        <span class="tag">EdTech</span>
+                        <span class="tag">Gamification</span>
+                        <span class="tag">Analytics</span>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <a href="https://breadbutterjam.github.io/portfolio/index.html" style="color: var(--secondary-color); text-decoration: none; font-size: 1rem;" target="_blank">
+                    View Complete Portfolio →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section id="interests" style="background: var(--bg-light);">
+        <div class="container">
+            <h2>Beyond Work</h2>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <div class="interest-icon">📸</div>
+                    <h3>Photography</h3>
+                    <p>Capturing moments through the lens</p>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">✍️</div>
+                    <h3>Writing</h3>
+                    <p>Stories and essays</p>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">🎬</div>
+                    <h3>Cinema</h3>
+                    <p>Film reviews</p>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">🗺️</div>
+                    <h3>Travel</h3>
+                    <p>Exploring cultures</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 1.5rem; color: #666; font-style: italic; font-size: 0.9rem;">
+                These sections are coming soon. Check back to see my photography, read my stories, and follow my travels.
+            </p>
+        </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section class="work-section">
+        <div class="container">
+            <h2>Experience Highlights</h2>
+            <div class="timeline-compact">
+                <div class="timeline-item-compact">
+                    <h3>UX Architect</h3>
+                    <div class="meta"><span class="company">Srijan (now Material)</span> • Feb 2022 – May 2025</div>
+                    <p>Led end-to-end UX for enterprise clients. Facilitated problem-framing sessions reducing iteration cycles by 50%. Established internal design library and processes that became company standard.</p>
+                </div>
+
+                <div class="timeline-item-compact">
+                    <h3>UX Architect</h3>
+                    <div class="meta"><span class="company">Trigyn Technologies</span> • Apr 2021 – Feb 2022</div>
+                    <p>Designed solutions for complex enterprise applications. Turned a small engagement into multi-year partnership through strategic UX improvements. Built UX frameworks that improved team efficiency.</p>
+                </div>
+
+                <div class="timeline-item-compact">
+                    <h3>Associate Manager – UX</h3>
+                    <div class="meta"><span class="company">Trigyn Technologies</span> • Oct 2019 – Mar 2021</div>
+                    <p>Built UX team from scratch. Improved user engagement and reduced support tickets by 40% through user-centered redesigns. Created hiring pipeline and training programs.</p>
+                </div>
+
+                <div class="timeline-item-compact">
+                    <h3>Design Lead</h3>
+                    <div class="meta"><span class="company">Zeus Learning</span> • Jul 2014 – Dec 2018</div>
+                    <p>Led design team across multiple education products. Created IA and interactive prototypes for enterprise learning platforms. Established design processes and quality standards.</p>
+                </div>
+
+                <div class="timeline-item-compact">
+                    <h3>Web Developer → Senior Developer</h3>
+                    <div class="meta"><span class="company">Zeus Learning</span> • Jul 2009 – Jun 2014</div>
+                    <p>Started as developer building interactive learning modules. Led 10-member team creating STEM experiences. This foundation in development deeply informs my UX approach today.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://breadbutterjam.github.io/portfolio/JaimeenBulsara_CV.pdf" style="display: inline-block; padding: 0.7rem 1.8rem; background: var(--secondary-color); color: white; text-decoration: none; border-radius: 5px; transition: all 0.3s; font-size: 0.95rem;" target="_blank">
+                    Download Full CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p style="font-size: 1rem; margin-bottom: 1rem;">Whether you want to discuss a project, grab coffee, or just say hi</p>
+            <div class="contact-links">
+                <a href="mailto:jaimeen@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/jaimeen-bulsara-31b25527/" class="contact-link" target="_blank">LinkedIn</a>
+                <a href="tel:+919833381188" class="contact-link">Call</a>
+                <!-- <a href="https://wa.me/919833381188" class="contact-link" target="_blank">Wassup</a> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with love</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
