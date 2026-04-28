@@ -5,6 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jaimeen Bulsara</title>
     <style>
+
+        /* Card Layout */
+.exploration-card {
+    background: var(--bg-light);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    border: 1px solid #e6e6e6;
+}
+
+.exploration-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Status badge */
+.exploration-card .status {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.9);
+    font-weight: 500;
+    z-index: 2;
+}
+
+/* Image Section */
+.card-media {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    background: #ddd;
+}
+
+.card-media img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.card-media img:hover {
+    transform: scale(1.04);
+}
+
+/* Content */
+.card-content {
+    padding: 1.2rem;
+}
+
+.card-content h3 {
+    font-size: 1.15rem;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+}
+
+.card-content .type {
+    color: var(--secondary-color);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 0.7rem;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Tech tags */
+.tech {
+    margin-top: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.tech-tag {
+    background: white;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    color: #666;
+    border: 1px solid #eee;
+}
         * {
             margin: 0;
             padding: 0;
@@ -187,7 +278,7 @@
         .exploration-card {
             background: var(--bg-light);
             border-radius: 10px;
-            padding: 1.5rem;
+            padding: 1rem;
             transition: transform 0.3s, box-shadow 0.3s;
             border-left: 4px solid var(--secondary-color);
             position: relative;
@@ -610,6 +701,49 @@
                 font-size: 0.9rem;
             }
         }
+        /* Modal backdrop */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+/* Modal image */
+.modal-content {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 10px;
+    animation: zoomIn 0.25s ease;
+}
+
+/* Close button */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+/* Hover hint */
+.clickable-img {
+    cursor: zoom-in;
+}
+
+/* Animation */
+@keyframes zoomIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
     </style>
 </head>
 <body>
@@ -660,32 +794,56 @@
             <div class="explorations-grid">
                 <div class="exploration-card">
                     <div class="status">In Progress</div>
-                    <div class="icon">🗺️</div>
-                    <h3>States of India</h3>
-                    <div class="type">Web App</div>
-                    <p>An interactive platform to learn about Indian states through various practice and test modes. Making geography fun, one state at a time.</p>
-                    
-                    <div class="tech" style="display: flex;">
-                        <a class="exploration-links" href="https://breadbutterjam.github.io/statesandcapitals/" target="_blank">Explore Project >> </a>
-                        <!-- <span class="tech-tag">React</span>
-                        <span class="tech-tag">Maps API</span>
-                        <span class="tech-tag">Gamification</span> -->
+
+                    <!-- Image Section -->
+                    <div class="card-media">
+                        <img src="img/states-home.jpg" alt="States of India Home Screen" class="clickable-img">
+                        <img src="img/states-game.jpg" alt="Find the State Game Screen" class="clickable-img">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="card-content">
+                        <h3>States of India</h3>
+                        <div class="type">Learning Game</div>
+
+                        <p>
+                            An interactive geography game to help users learn Indian states through multiple modes like
+                            map exploration, quizzes, and shape-based recall.
+                        </p>
+
+                        <div class="tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="exploration-card">
                     <div class="status">In Progress</div>
-                    <div class="icon">🏏</div>
-                    <h3>Custom IPL Fantasy</h3>
-                    <div class="type">App</div>
-                    <p>Our own twist on IPL fantasy cricket with custom rules and scoring. Built for friends who wanted more control over their fantasy league experience.</p>
-                    <div class="tech" style="display: flex;">
-                        <a class="exploration-links" href="mailto:jamtests101+fantasyrequest@gmail.com?subject=Request%20Access%20to%20Fantasy%20League&body=Hi%2C%20I%20would%20like%20to%20explore%20the%20fantasy%20league%20app%20you%20are%20working%20on.%20Thanks.">Request access >> </a>
-                        <!-- <span class="tech-tag">Live Scoring</span>
-                        <span class="tech-tag">Custom Rules</span>
-                        <span class="tech-tag">Real-time Updates</span> -->
+
+                    <!-- Image Section -->
+                    <div class="card-media">
+                        <img src="img/vfl2.png" alt="Custom IPL Fantasy App" class="clickable-img">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="card-content">
+                        <h3>Custom IPL Fantasy</h3>
+                        <div class="type">App</div>
+
+                        <p>Our own twist on IPL fantasy cricket with custom rules and scoring. Built for friends who wanted more control over their fantasy league experience.
+                        </p>
+
+                        <div class="tech" style="display: flex;">
+                            <a class="exploration-links" href="mailto:jamtests101+fantasyrequest@gmail.com?subject=Request%20Access%20to%20Fantasy%20League&body=Hi%2C%20I%20would%20like%20to%20explore%20the%20fantasy%20league%20app%20you%20are%20working%20on.%20Thanks.">Request access >> </a>
+                            <!-- <span class="tech-tag">Live Scoring</span>
+                            <span class="tech-tag">Custom Rules</span>
+                            <span class="tech-tag">Real-time Updates</span> -->
+                        </div>
                     </div>
                 </div>
+
 
                 <div class="exploration-card">
                     <div class="status">Writing</div>
@@ -849,11 +1007,15 @@
             </div>
         </div>
     </section>
-
+    <div id="imageModal" class="image-modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
     <!-- Footer -->
     <footer>
         <p>Made with love</p>
     </footer>
+    
 
     <script>
         function toggleMenu() {
@@ -881,6 +1043,38 @@
                 hamburger.classList.remove('active');
             }
         });
+
+    
     </script>
+    <script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    const closeBtn = document.querySelector(".close-modal");
+
+    document.querySelectorAll(".clickable-img").forEach(img => {
+        img.addEventListener("click", function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        });
+    });
+
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // Close on outside click
+    modal.onclick = function (e) {
+        if (e.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    // ESC key support
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+            modal.style.display = "none";
+        }
+    });
+</script>
 </body>
 </html>
