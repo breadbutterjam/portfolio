@@ -438,6 +438,12 @@
             /* background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); */
         }
 
+        .project-image.data-dashboard{
+            background-image: url(img/data-dashboard.png);
+            background-position: top;
+            /* background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); */
+        }
+
         @media screen and (max-width: 600px) {
             .project-image.dmfas {
                 background-position-x: 0px;
@@ -784,6 +790,83 @@
             </div>
         </div>
     </section>
+ <!-- Projects Section -->
+    <section id="work" class="projects">
+        <div class="container">
+            <h2>Featured Work</h2>
+<div class="project-horizontal">
+                <div class="project-image dmfas"></div>
+                <div class="project-details">
+                    <h3>UNCTAD - DMFAS</h3>
+                    <div class="subtitle">Redesigning a complex financial workflow</div>
+                    <p>A redesign of the Loan module within the Debt Management and Financial Analysis System.
+I conducted a heuristic evaluation that uncovered <b>150+ usability issues</b>, then reworked the information architecture, interaction patterns, and workflows to create a clearer experience for a complex financial system.
+The resulting design became the <b>foundation for subsequent modules</b>.</p>
+                    <div class="project-tags">
+                        <span class="tag">Enterprise UX</span>
+                        <span class="tag">Financial workflows</span>
+                        <span class="tag">Heuristic Evaluation</span>
+                        <span class="tag">Information architecture</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-horizontal"><!-- 🌍 -->
+                <div class="project-image SCI"></div>
+                <div class="project-details">
+                    <h3>Save the Children</h3>
+                    <div class="subtitle">Building a design language for scalable content</div>
+                    <p>Created a reusable design language and 20+ layouts for an international NGO, translating existing brand guidelines into a flexible system that authors could use to create engaging digital experiences.</p>
+                    <div class="project-tags">
+                        <span class="tag">Design System</span>
+                        <span class="tag">Components</span>
+                        <span class="tag">Content Strategy</span>
+                        <span class="tag">Non-Profit</span>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+            <div class="project-horizontal"><!-- 📚 -->
+                <div class="project-image ME"></div>
+                <div class="project-details">
+                    <h3>Mastery Education</h3>
+                    <div class="subtitle">Learning Management System</div>
+                    <p>Designed experiences across educator workflows, student management, assessment, analytics, gamification, and adaptive learning for a complex learning platform. The work required balancing multiple user roles and workflows while making large amounts of information actionable.</p>
+                    <div class="project-tags">
+                        <span class="tag">Enterprise UX</span>
+                        <span class="tag">Multi-role workflows</span>
+                        <span class="tag">Gamification</span>
+                        <span class="tag">Interaction design</span>
+                    </div>
+                </div>
+            </div>
+
+
+             <div class="project-horizontal"><!-- 📚 -->
+                <div class="project-image data-dashboard"></div>
+                <div class="project-details">
+                    <h3>Data & Reporting Platform</h3>
+                    <div class="subtitle">Transforming complex reporting into actionable information</div>
+                    <p>Redesigned a data-heavy reporting experience to improve information hierarchy, surface important insights, and make complex datasets easier to interpret and act on.</p>
+                    <div class="project-tags">
+                        <span class="tag">Enterprise UX</span>
+                        <span class="tag">Multi-role workflows</span>
+                        <span class="tag">Gamification</span>
+                        <span class="tag">Interaction design</span>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <a href="https://breadbutterjam.github.io/portfolio/index.html" style="color: var(--secondary-color); text-decoration: none; font-size: 1rem;" target="_blank">
+                    View Complete Portfolio →
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Current Explorations Section -->
     <section id="explorations" class="explorations">
@@ -792,6 +875,31 @@
             <p class="exploration-intro">Side projects, experiments, and creative explorations currently in progress</p>
             
             <div class="explorations-grid">
+                 <div class="exploration-card">
+                    <div class="status">In Progress</div>
+
+                    <!-- Image Section -->
+                    <div class="card-media">
+                        <img src="img/Rabbit-Hole-light.png" alt="Rabbit Hole / Reading App" class="clickable-img">
+                        <img src="img/Rabbit-Hole-profile.png" alt="Rabbit Hole / Reading App" class="clickable-img">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="card-content">
+                        <h3>Rabbit Hole / Reading App</h3>
+                        <div class="type">App</div>
+
+                        <p>Building a reading app that builds up on the interactions seen on short video content platforms. The goal is to create an engaging and interactive reading experience that encourages users to explore content in a non-linear way, similar to how they would on platforms like Instagram Reels or TikTok.
+                        </p>
+
+                        <div class="tech" style="display: flex;">
+                            <a class="exploration-links" href="https://breadbutterjam.github.io/wikireels/">Explore app >> </a>
+                            <!-- <span class="tech-tag">Live Scoring</span>
+                            <span class="tech-tag">Custom Rules</span>
+                            <span class="tech-tag">Real-time Updates</span> -->
+                        </div>
+                    </div>
+                </div>
                 <div class="exploration-card">
                     <div class="status">In Progress</div>
 
@@ -820,31 +928,7 @@
                     </div>
                 </div>
 
-                <div class="exploration-card">
-                    <div class="status">In Progress</div>
-
-                    <!-- Image Section -->
-                    <div class="card-media">
-                        <img src="img/Rabbit-Hole-light.png" alt="Rabbit Hole / Reading App" class="clickable-img">
-                        <img src="img/Rabbit-Hole-profile.png" alt="Rabbit Hole / Reading App" class="clickable-img">
-                    </div>
-
-                    <!-- Content -->
-                    <div class="card-content">
-                        <h3>Rabbit Hole / Reading App</h3>
-                        <div class="type">App</div>
-
-                        <p>Building a reading app that builds up on the interactions seen on short video content platforms. The goal is to create an engaging and interactive reading experience that encourages users to explore content in a non-linear way, similar to how they would on platforms like Instagram Reels or TikTok.
-                        </p>
-
-                        <div class="tech" style="display: flex;">
-                            <a class="exploration-links" href="https://breadbutterjam.github.io/wikireels/">Explore app >> </a>
-                            <!-- <span class="tech-tag">Live Scoring</span>
-                            <span class="tech-tag">Custom Rules</span>
-                            <span class="tech-tag">Real-time Updates</span> -->
-                        </div>
-                    </div>
-                </div>
+               
 
                 <div class="exploration-card">
                     <div class="status">In Progress</div>
@@ -887,62 +971,7 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="work" class="projects">
-        <div class="container">
-            <h2>Featured Work</h2>
-
-            <div class="project-horizontal"><!-- 🌍 -->
-                <div class="project-image SCI"></div>
-                <div class="project-details">
-                    <h3>Save the Children</h3>
-                    <div class="subtitle">Design System & Layouts</div>
-                    <p>Created a modern design language system and 20+ unique, immersive layouts for the international NGO. Built upon their branding guidelines to help authors create engaging pages that communicate global impact.</p>
-                    <div class="project-tags">
-                        <span class="tag">Design System</span>
-                        <span class="tag">Content Strategy</span>
-                        <span class="tag">Non-Profit</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-horizontal">
-                <div class="project-image dmfas"></div>
-                <div class="project-details">
-                    <h3>UNCTAD - DMFAS</h3>
-                    <div class="subtitle">Enterprise System Redesign</div>
-                    <p>Redesigned core module of Debt Management and Financial Analysis System. Conducted heuristic evaluation identifying 150+ usability issues. The updated design became the gold standard for all subsequent modules.</p>
-                    <div class="project-tags">
-                        <span class="tag">Enterprise UX</span>
-                        <span class="tag">Heuristic Evaluation</span>
-                        <span class="tag">UN Project</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-horizontal"><!-- 📚 -->
-                <div class="project-image ME"></div>
-                <div class="project-details">
-                    <h3>Mastery Education</h3>
-                    <div class="subtitle">Learning Management System</div>
-                    <p>Transformed a leading learning management platform with enhanced features allowing educators to manage student profiles, assign assessments, and access real-time analytics. Designed gamification, and adaptive learning features to increase student engagement.</p>
-                    <div class="project-tags">
-                        <span class="tag">EdTech</span>
-                        <span class="tag">Gamification</span>
-                        <span class="tag">Analytics</span>
-                    </div>
-                </div>
-            </div>
-
-            
-
-            <div style="text-align: center; margin-top: 1.5rem;">
-                <a href="https://breadbutterjam.github.io/portfolio/index.html" style="color: var(--secondary-color); text-decoration: none; font-size: 1rem;" target="_blank">
-                    View Complete Portfolio →
-                </a>
-            </div>
-        </div>
-    </section>
+   
 
     <!-- Interests Section -->
     <section id="interests" style="background: var(--bg-light);">
@@ -952,27 +981,27 @@
                 <div class="interest-card">
                     <div class="interest-icon">📸</div>
                     <h3>Photography</h3>
-                    <p>Capturing moments through the lens</p>
+                    <p>Capturing fleeting moments in time</p>
                 </div>
                 <div class="interest-card">
                     <div class="interest-icon">✍️</div>
                     <h3>Writing</h3>
                     <p>Stories and essays</p>
                 </div>
-                <div class="interest-card">
+                <!-- <div class="interest-card">
                     <div class="interest-icon">🎬</div>
                     <h3>Cinema</h3>
                     <p>Film reviews</p>
-                </div>
+                </div> -->
                 <div class="interest-card">
                     <div class="interest-icon">🗺️</div>
                     <h3>Travel</h3>
-                    <p>Exploring cultures</p>
+                    <p>Exploring the world</p>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 1.5rem; color: #666; font-style: italic; font-size: 0.9rem;">
+            <!-- <p style="text-align: center; margin-top: 1.5rem; color: #666; font-style: italic; font-size: 0.9rem;">
                 These sections are coming soon. Check back to see my photography, read my stories, and follow my travels.
-            </p>
+            </p> -->
         </div>
     </section>
 
